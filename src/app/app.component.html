@@ -1,21 +1,117 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!-- <router-outlet></router-outlet> -->
+<section class="pt-5 pb-5 bg-dark inner-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1 class="mt-0 mb-3 text-white">Employee Review</h1>          
+        </div>
+      </div>
+    </div>
+  </section>
+  
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+        <form role="form" (ngSubmit)="onSubmitted()">
+            <!-- {{buginfoform.value | json}}
+            <hr>
+            {{buginfo | json}} -->
+            <hr class="colorgraph">
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <label>Employee Name</label>
+                  <input type="text" name="emp_first_name" class="form-control input-lg" placeholder="First Name" tabindex="1"  [(ngModel)]="emp_first_name">
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <label>&nbsp;</label>
+                  <input type="text" name="emp_last_name" id="emp_last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2" [(ngModel)]="emp_last_name">
+                </div>
+              </div>
+            </div>
 
-<router-outlet></router-outlet>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Employee Hire Date</label>
+                  <input
+                        name="emp_hire_date" 
+                        type="text"
+                        class="form-control"
+                        [minDate]="minDate"
+                        [maxDate]="maxDate"
+                        #dp="bsDatepicker"
+                        bsDatepicker 
+                        [(ngModel)]="emp_hire_date">
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Employee Title</label>
+              <input type="text" name="emp_title" id="emp_title" class="form-control input-lg" placeholder="Employee Title" [(ngModel)]="emp_title">
+            </div>
+
+            <div class="form-group">
+              <label>Employee Department</label>
+              <select name="emp_dept" id="emp_dept" class="form-control input-lg" [(ngModel)]="emp_dept">
+                <option >Select Employee Department</option>
+                <option value="IT">IT</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Account">Account</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label>Overall, I would rankthis employeeperfromance as:</label><br>
+              <label class="radio-inline"><input type="radio" name="emp_rank" value="Very Good" [(ngModel)]= "emp_rank">Very Good</label>
+              <label class="radio-inline"><input type="radio" name="emp_rank" value="Good" [(ngModel)]= "emp_rank">Good</label>
+              <label class="radio-inline"><input type="radio" name="emp_rank" value="Fair" [(ngModel)]= "emp_rank">Fair</label>
+              <label class="radio-inline"><input type="radio" name="emp_rank" value="Poor" [(ngModel)]= "emp_rank">Poor</label>
+              <label class="radio-inline"><input type="radio" name="emp_rank" value="Very Poor" [(ngModel)]= "emp_rank">Very Poor</label>
+            </div>
+          
+            <div class="form-group">
+              <label>Please go into more detail on why you chose this ranking.</label>
+              <textarea name="emp_rank_detail" id="emp_rank_detail" class="form-control input-lg" [(ngModel)]="emp_rank_detail"></textarea>
+            </div>
+          
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <label>Supervisor Name</label>
+                  <input type="text" name="sup_first_name" id="sup_first_name" class="form-control input-lg" placeholder="First Name" tabindex="1"  [(ngModel)]="sup_first_name">
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group">
+                  <label>&nbsp;</label>
+                  <input type="text" name="sup_last_name" id="sup_last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2" [(ngModel)]="sup_last_name">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <input type="submit" value="Submit" class="btn btn-primary btn-block btn-lg" tabindex="7">
+              </div>
+            </div>
+            
+        </form>
+    </div>
+  </div>
+</div>
+<ng-template [ngIf]="status">
+    <div class="warp-page">
+        <h3>Employee Review Information</h3>
+        <table class="table">
+            <tr *ngFor="let val of mapped "> 
+                <td>{{val.type}}</td> 
+                <td>{{val.value}}</td> 
+            </tr>
+        </table>
+        <!-- {{buginfo | json}} -->
+    </div>
+</ng-template>
